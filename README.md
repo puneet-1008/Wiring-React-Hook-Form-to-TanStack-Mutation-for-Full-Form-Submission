@@ -11,7 +11,6 @@ success, and route server-side field errors back into the form with `setError`.
 ├── server/                 # Express API on :3001 (in-memory threads)
 │   └── index.js            # GET/POST /api/threads with server-side validation
 └── client/                 # Vite + React app on :5173
-    ├── .env.development.example
     └── src/
         ├── services/threadApi.js       # provided — getThreads + createThread
         ├── components/ThreadList.jsx    # provided — reads ["threads"]
@@ -21,10 +20,11 @@ success, and route server-side field errors back into the form with `setError`.
 ## Setup & run
 ```bash
 npm run setup                                   # install root + server + client
-cp client/.env.development.example client/.env.development
 npm run dev                                      # Express :3001, Vite :5173
 #   open http://localhost:5173
 ```
+The client uses `http://localhost:3001/api` by default. To use a different API URL,
+set `VITE_API_URL` in `client/.env.development`.
 
 ## What you complete
 Only `client/src/components/ThreadForm.jsx`:
@@ -38,4 +38,3 @@ Only `client/src/components/ThreadForm.jsx`:
 - Submit a valid one → `POST` fires, list updates, form clears.
 - Submit the title **"Welcome to the forum"** → the server returns `400 Title already taken`,
   which must appear **inline** under the Title field.
-
