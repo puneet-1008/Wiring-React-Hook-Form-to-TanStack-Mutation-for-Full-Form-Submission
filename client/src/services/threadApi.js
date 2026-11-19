@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// A single, shared Axios instance. Base URL comes from client/.env.development.
+// A single, shared Axios instance. Override the local default in client/.env.development.
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3001/api",
 });
 
 // Read the list.
